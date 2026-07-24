@@ -15,6 +15,7 @@ patterns and architecture decisions, not generic Node.js approaches.
 
 - Never instantiate services directly (no `new PrismaClient()`,
   no `new SomeService()`) — always use constructor injection
+- Never manually write to the `prisma/migrations/` directory for application changes. Treat it as read-only unless the migration workflow itself creates or updates the files.
 - Every infrastructure integration gets its own module and service:
   src/lib/database/prisma.module.ts + prisma.service.ts
   src/lib/mail/mail.module.ts + mail.service.ts

@@ -6,10 +6,14 @@ import {
   HttpStatus,
   Inject,
   Req,
+  UseInterceptors,
 } from '@nestjs/common';
+import { AllowAnonymous } from '@thallesp/nestjs-better-auth';
 import type { Request } from 'express';
 import { AppService } from './app.service.js';
+import { ResponseInterceptor } from './utils/response.interceptor.js';
 
+@UseInterceptors(ResponseInterceptor)
 @Controller()
 export class AppController {
   constructor(
@@ -18,12 +22,14 @@ export class AppController {
   ) {}
 
   @Get()
+  @AllowAnonymous()
   async getHello(@Req() req: Request): Promise<string> {
     await this.assertAllowed(req);
     return this.appService.getHello();
   }
 
   @Get('matches')
+  @AllowAnonymous()
   async getMatches(@Req() req: Request): Promise<string> {
     await this.assertAllowed(req);
     return this.appService.getMatches();
