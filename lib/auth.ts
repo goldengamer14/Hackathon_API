@@ -1,5 +1,5 @@
 import 'dotenv/config.js';
-import { betterAuth } from 'better-auth';
+import { betterAuth, GenerateIdFn } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin } from 'better-auth/plugins/admin';
 import { prisma } from './prisma.js';
@@ -10,11 +10,6 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  advanced: {
-    database: {
-      generateId: 'serial',
-    },
-  },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,

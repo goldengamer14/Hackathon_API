@@ -16,7 +16,7 @@ export class UserController {
 
   @Get(':id')
   @AllowAnonymous()
-  async findOne(@Param('id', ParseIntPipe) id: number) {
+  async findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 }
