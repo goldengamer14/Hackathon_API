@@ -44,8 +44,8 @@ lerna-debug.log*
 .env.local
 
 # temp directory
-.temp
-.tmp
+*.temp
+*.tmp
 
 # Runtime data
 pids
