@@ -6,6 +6,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { PrismaModule } from './lib/database/prisma.module.js';
 import { UserModule } from './module/user/user.module.js';
+import { HackathonModule } from './module/hackathon/hackathon.module.js';
 
 import 'dotenv/config.js';
 
@@ -13,6 +14,7 @@ import 'dotenv/config.js';
   imports: [
     PrismaModule,
     UserModule,
+    HackathonModule,
     AuthModule.forRoot({
       auth,
       bodyParser: {
@@ -32,7 +34,7 @@ import 'dotenv/config.js';
           max: 20,
         }),
       ],
-    }),
+    })
   ],
   controllers: [AppController],
   providers: [AppService],
